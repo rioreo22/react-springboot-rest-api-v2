@@ -3,6 +3,7 @@ package com.gccoffee.domain.order;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -10,4 +11,7 @@ import java.util.UUID;
 public class Order {
     private UUID id;
     private Email email;
+    private OrderStatus orderStatus;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }
