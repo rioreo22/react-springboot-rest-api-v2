@@ -34,16 +34,22 @@ public class ClothesRestController {
     private String uploadPath;
 
     @GetMapping("categories")
-    public ResponseEntity<?> getCategorys(){
+    public ResponseEntity<?> getCategories() {
         return ResponseEntity.ok().body(Category.values());
     }
 
     @GetMapping
     public ResponseEntity<?> getClothes() {
         Clothes clothes = Clothes.builder().id(UUID.randomUUID()).name("T-shirt").price(1234).imagePath("adsfadf").description("deadlfkjasl").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).build();
-        return ResponseEntity.ok().body(List.of(clothes,clothes,clothes,clothes,clothes,clothes));
+        return ResponseEntity.ok().body(List.of(Clothes.builder().id(UUID.randomUUID()).name("T-shirt").price(1234).imagePath("adsfadf").description("deadlfkjasl").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).build()
+                , Clothes.builder().id(UUID.randomUUID()).name("T-shirt").price(1234).imagePath("adsfadf").description("deadlfkjasl").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).build(), Clothes.builder().id(UUID.randomUUID()).name("T-shirt").price(1234).imagePath("adsfadf").description("deadlfkjasl").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).build(), Clothes.builder().id(UUID.randomUUID()).name("T-shirt").price(1234).imagePath("adsfadf").description("deadlfkjasl").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).build(), Clothes.builder().id(UUID.randomUUID()).name("T-shirt").price(1234).imagePath("adsfadf").description("deadlfkjasl").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).build(), Clothes.builder().id(UUID.randomUUID()).name("T-shirt").price(1234).imagePath("adsfadf").description("deadlfkjasl").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).build()));
     }
 
+
+    @GetMapping("/api/v1/clothes/create")
+    public void createClothes() {
+
+    }
 
     @PostMapping
     public void saveClothes(ClothesRequest clothesRequest, HttpServletResponse response) {
