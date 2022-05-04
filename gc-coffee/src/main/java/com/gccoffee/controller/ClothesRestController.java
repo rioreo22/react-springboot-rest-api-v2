@@ -1,5 +1,6 @@
 package com.gccoffee.controller;
 
+import com.gccoffee.domain.clothes.Category;
 import com.gccoffee.domain.clothes.Clothes;
 import com.gccoffee.dto.request.ClothesRequest;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,19 +26,26 @@ import java.util.UUID;
 
 @Slf4j
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/clothes")
 @RestController
 public class ClothesRestController {
 
     @Value("${com.gccoffee.upload.path}")
     private String uploadPath;
 
-    @GetMapping("/api/v1/clothes")
+    @GetMapping("categories")
+    public ResponseEntity<?> getCategorys(){
+        return ResponseEntity.ok().body(Category.values());
+    }
+
+    @GetMapping
     public ResponseEntity<?> getClothes() {
         Clothes clothes = Clothes.builder().id(UUID.randomUUID()).name("T-shirt").price(1234).imagePath("adsfadf").description("deadlfkjasl").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).build();
         return ResponseEntity.ok().body(List.of(clothes,clothes,clothes,clothes,clothes,clothes));
     }
 
-    @PostMapping("/api/v1/clothes")
+
+    @PostMapping
     public void saveClothes(ClothesRequest clothesRequest, HttpServletResponse response) {
 
         log.info(clothesRequest.toString());

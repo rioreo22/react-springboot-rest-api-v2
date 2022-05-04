@@ -7,7 +7,6 @@ import {ClothesForm} from "./components/ClothesForm";
 function App() {
     return (
         <div className="App">
-            <a href=""></a>
             <ClothesForm/>
         </div>
     );
