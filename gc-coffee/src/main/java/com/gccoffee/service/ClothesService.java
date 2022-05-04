@@ -14,4 +14,6 @@ public interface ClothesService {
     Clothes createClothes(String name, Category category, long price);
 
     Clothes createClothes(String name, Category category, long price, String description);
+
+    void saveClothes(Clothes clothes);
 }

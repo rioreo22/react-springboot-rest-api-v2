@@ -12,6 +12,7 @@ public class Clothes {
     private UUID id;
     private String name;
     private long price;
+    private String imagePath;
     private String description;
     private Category category;
     private LocalDateTime createdAt;

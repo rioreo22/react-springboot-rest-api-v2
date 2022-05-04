@@ -15,6 +15,7 @@ function App() {
         formData.append("image", e.target.clothes_file.files[0]);
         formData.append("name", "root");
         formData.append("category", "TOP");
+        formData.append("price", "1000");
 
       await axios({
         method: "POST",
