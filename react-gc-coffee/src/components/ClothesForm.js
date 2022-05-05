@@ -1,7 +1,14 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {CategorySelect} from "./CategorySelect";
 
 export function ClothesForm() {
+
+    const [category, setCategory] = useState([]);
+    useEffect(()=>{
+        axios.get('http://localhost:8080/api/v1/clothes/categories').then(v=> setCategory(v.data));
+    }, []);
+
     const onSubmit = async (e) => {
         e.preventDefault();
         e.persist();
@@ -43,14 +50,7 @@ export function ClothesForm() {
                 <label className="form-label">Description</label>
                 <input type="text" className="form-control" id="description" name="description"/>
             </div>
-            <div className="mb-3">
-                <label> Category</label>
-                <select className="form-select" id="category" name="category">
-                    <option value="TOP">TOP</option>
-                    <option value="BOTTOM">BOTTOM</option>
-                    <option value="SOCKS">SOCKS</option>
-                </select>
-            </div>
+            <CategorySelect categories={category}/>
             <button type="submit" className="btn btn-primary">Submit</button>
         </form>
     );

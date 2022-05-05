@@ -39,8 +39,9 @@ public class ClothesRestController {
     @Value("${com.gccoffee.upload.path}")
     private String uploadPath;
 
-    @GetMapping("categories")
+    @GetMapping("/categories")
     public ResponseEntity<?> getCategories() {
+        log.info("getCategories~");
         return ResponseEntity.ok().body(Category.values());
     }
 
@@ -78,12 +79,6 @@ public class ClothesRestController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return result;
-//
-//        String pathname = uploadPath + File.separator + imageName;
-//        log.info(pathname);
-//        File file = new File(pathname);
-//        log.info("file : " + file);
-
     }
 
     @PostMapping
