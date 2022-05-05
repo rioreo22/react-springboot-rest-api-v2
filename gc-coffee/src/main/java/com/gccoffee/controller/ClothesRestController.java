@@ -47,8 +47,9 @@ public class ClothesRestController {
 
     @GetMapping
     public ResponseEntity<?> getClothes() {
-        Clothes clothes = Clothes.builder().id(UUID.randomUUID()).name("T-shirt").price(1234).imagePath("2022/05/05/34be8d9e-e0eb-4cde-96a0-60f56f36fd84_KakaoTalk_20220423_150917120_02.jpg").description("deadlfkjasl").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).build();
-        return ResponseEntity.ok().body(List.of(clothes, clothes));
+        Clothes clothes = Clothes.builder().id(UUID.randomUUID()).category(Category.BOTTOM).name("T-shirt").price(1234).imagePath("2022/05/05/34be8d9e-e0eb-4cde-96a0-60f56f36fd84_KakaoTalk_20220423_150917120_02.jpg").description("deadlfkjasl").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).build();
+        Clothes clothes2 = Clothes.builder().id(UUID.randomUUID()).category(Category.TOP).name("T-shirt").price(1234).imagePath("2022/05/05/34be8d9e-e0eb-4cde-96a0-60f56f36fd84_KakaoTalk_20220423_150917120_02.jpg").description("deadlfkjasl").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).build();
+        return ResponseEntity.ok().body(List.of(clothes, clothes2));
     }
 
     @GetMapping("/create")
