@@ -9,7 +9,7 @@ export function ClothesForm() {
         let formData = new FormData();
         formData.append("image", e.target.clothes_file.files[0]);
         formData.append("name", e.target.name.value);
-        // formData.append("category", e.target.category.value);
+        formData.append("category", e.target.category.value);
         formData.append("description", e.target.description.value);
         formData.append("price", e.target.price.value);
 

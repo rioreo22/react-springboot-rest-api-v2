@@ -13,23 +13,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class OrderRestController {
 
-    private final OrderService orderService;
+//    private final OrderService orderService;
+//
+//    public OrderRestController(OrderService orderService) {
+//        this.orderService = orderService;
+//    }
 
-    public OrderRestController(OrderService orderService) {
-        this.orderService = orderService;
-    }
-
-    @PostMapping("/api/v1/orders")
-    public Order createOrder(@RequestBody OrderRequest orderRequest) {
-        log.info(orderRequest.email());
-
-        return orderService.createOrder(
-
-                new Email(orderRequest.email()),
-                orderRequest.address(),
-                orderRequest.postcode(),
-                orderRequest.orderItems()
-        );
-    }
+//    @PostMapping("/api/v1/orders")
+//    public Order createOrder(@RequestBody OrderRequest orderRequest) {
+//        log.info(orderRequest.email());
+//
+//        return orderService.createOrder(
+//
+//                new Email(orderRequest.email()),
+//                orderRequest.address(),
+//                orderRequest.postcode(),
+//                orderRequest.orderItems()
+//        );
+//    }
 
 }
