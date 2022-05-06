@@ -53,18 +53,20 @@ export function Clothes() {
 
     return (
         <div className="container">
-            <div>
-                <div className="col-12">
-                    <Summary items={items} onOrderSubmit={handleOrderSubmit}/>
+            <div className="row">
+                <div className="col-8">
+                    <div className="row row-cols-4">
+                        {clothes.map(v =>
+                            <div key={v.id} className="col-3">
+                                <ClothesCard {...v} onAddClick={handleAddClicked}/>
+                            </div>
+                        )}
+                    </div>
                 </div>
-                <div className="row">
-                    {clothes.map(v =>
-                        <div key={v.id} className="col-4">
-                            <ClothesCard {...v} onAddClick={handleAddClicked}/>
-                        </div>
-                    )}
+                <div className="col-4"><Summary className="col-3" items={items} onOrderSubmit={handleOrderSubmit}/>
                 </div>
             </div>
+
         </div>
     );
 }
