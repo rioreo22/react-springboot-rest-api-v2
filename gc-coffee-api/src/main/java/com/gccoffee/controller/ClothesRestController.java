@@ -3,6 +3,7 @@ package com.gccoffee.controller;
 import com.gccoffee.domain.clothes.Category;
 import com.gccoffee.domain.clothes.Clothes;
 import com.gccoffee.dto.request.ClothesRequest;
+import com.gccoffee.service.ClothesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,25 +37,18 @@ import java.util.UUID;
 @RestController
 public class ClothesRestController {
 
+    private final ClothesService clothesService;
     @Value("${com.gccoffee.upload.path}")
     private String uploadPath;
 
     @GetMapping("/categories")
     public ResponseEntity<?> getCategories() {
-        log.info("getCategories~");
         return ResponseEntity.ok().body(Category.values());
     }
 
     @GetMapping
     public ResponseEntity<?> getClothes() {
-        Clothes clothes = Clothes.builder().id(UUID.randomUUID()).category(Category.BOTTOM).name("T-shirt").price(1234).imagePath("2022/05/05/34be8d9e-e0eb-4cde-96a0-60f56f36fd84_KakaoTalk_20220423_150917120_02.jpg").description("deadlfkjasl").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).build();
-        Clothes clothes2 = Clothes.builder().id(UUID.randomUUID()).category(Category.TOP).name("T-shirt").price(1234).imagePath("2022/05/05/34be8d9e-e0eb-4cde-96a0-60f56f36fd84_KakaoTalk_20220423_150917120_02.jpg").description("deadlfkjasl").createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).build();
-        return ResponseEntity.ok().body(List.of(clothes, clothes2));
-    }
-
-    @GetMapping("/create")
-    public void createClothes() {
-
+        return ResponseEntity.ok().body(clothesService.getAll());
     }
 
     @GetMapping("/image")
@@ -83,7 +77,7 @@ public class ClothesRestController {
     }
 
     @PostMapping
-    public void saveClothes(ClothesRequest clothesRequest, HttpServletResponse response) {
+    public void saveClothes(ClothesRequest clothesRequest, HttpServletResponse response) throws IOException {
 
         log.info(clothesRequest.toString());
 
@@ -92,6 +86,8 @@ public class ClothesRestController {
         log.info("imagePath = " + imagePath);
         Clothes clothes = clothesRequest.toEntity(imagePath);
 
+        clothesService.saveClothes(clothes);
+        response.sendRedirect("");
     }
 
     private String saveImage(MultipartFile uploadImage) {

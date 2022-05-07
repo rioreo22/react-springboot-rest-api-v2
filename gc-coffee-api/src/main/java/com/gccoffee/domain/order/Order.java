@@ -1,5 +1,6 @@
 package com.gccoffee.domain.order;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -7,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+@Builder
 @Getter
 @ToString
 public class Order {

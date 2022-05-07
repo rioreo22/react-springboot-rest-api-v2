@@ -2,32 +2,38 @@ package com.gccoffee.service;
 
 import com.gccoffee.domain.clothes.Category;
 import com.gccoffee.domain.clothes.Clothes;
+import com.gccoffee.domain.clothes.ClothesRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.UUID;
 
-public class DefaultClothesService implements ClothesService{
+@RequiredArgsConstructor
+@Service
+public class DefaultClothesService implements ClothesService {
+
+    private final ClothesRepository clothesRepository;
+
     @Override
-    public List<Clothes> getClothesByCategory() {
-        return null;
+    public List<Clothes> getClothesByCategory(Category category) {
+        return clothesRepository.findByCategory(category);
     }
 
     @Override
     public List<Clothes> getAll() {
-        return null;
+        return clothesRepository.findAll();
+    }
+    @Override
+    public void saveClothes(Clothes clothes){
+        clothesRepository.insert(clothes);
     }
 
-    @Override
-    public Clothes createClothes(String name, Category category, long price) {
-        return null;
-    }
 
     @Override
-    public Clothes createClothes(String name, Category category, long price, String description) {
-        return null;
-    }
-
-    @Override
-    public void saveClothes(Clothes clothes) {
-
+    public void updateClothes(Clothes clothes) {
+        clothesRepository.update(clothes);
     }
 }
