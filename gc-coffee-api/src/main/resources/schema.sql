@@ -1,13 +1,13 @@
-
 CREATE TABLE clothes
 (
     clothes_id   BINARY(16) PRIMARY KEY,
-    clothes_name VARCHAR(20) NOT NULL,
-    category     VARCHAR(50) NOT NULL,
-    price        BIGINT      NOT NULL,
+    clothes_name VARCHAR(20)  NOT NULL,
+    category     VARCHAR(50)  NOT NULL,
+    price        BIGINT       NOT NULL,
     description  VARCHAR(500) DEFAULT NULL,
-    created_at   datetime(6) NOT NULL,
-    updated_at   datetime(6)  DEFAULT NULL
+    created_at   datetime(6)  NOT NULL,
+    updated_at   datetime(6)  DEFAULT NULL,
+    image_path   VARCHAR(500) NOT NULL
 );
 
 CREATE TABLE orders
@@ -35,5 +35,5 @@ create table order_items
     index (order_id),
     constraint fk_order_items_to_order FOREIGN KEY (order_id) references orders (order_id) on delete cascade,
     constraint fk_order_items_to_clothes foreign key (clothes_id) references clothes (clothes_id)
-);
+)
 

@@ -1,4 +1,4 @@
-package com.gccoffee.domain;
+package com.gccoffee.domain.clothes;
 
 import static org.junit.jupiter.api.Assertions.*;
 

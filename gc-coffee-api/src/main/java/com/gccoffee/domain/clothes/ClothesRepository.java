@@ -11,7 +11,7 @@ public interface ClothesRepository {
 
     List<Clothes> findByName(String name);
 
-    List<Clothes> findByType(Category clothesType);
+    List<Clothes> findByCategory(Category category);
 
     Optional<Clothes> findById(UUID id);
 

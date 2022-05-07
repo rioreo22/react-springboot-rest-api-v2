@@ -1,11 +1,15 @@
 package com.gccoffee.domain.clothes;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@ToString
+@EqualsAndHashCode
 @Builder
 @Getter
 public class Clothes {
