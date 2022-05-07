@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Repository
 public class OrderJdbcRepository implements OrderRepository {
@@ -26,11 +28,11 @@ public class OrderJdbcRepository implements OrderRepository {
         );
 
         order.getOrderItems().forEach(item -> {
-            jdbcTemplate.update("INSERT INTO order_items(order_id, clothes_id, category, price, quantity, createed_at, updated_at) " +
+            jdbcTemplate.update("INSERT INTO order_items(order_id, clothes_id, category, price, quantity, created_at, updated_at) " +
                             "VALUES (UUID_TO_BIN(?), UUID_TO_BIN(?), ?, ?, ?, ?, ?)",
                     order.getId().toString().getBytes(),
                     item.clothesId().toString().getBytes(),
-                    item.category(),
+                    item.category().toString(),
                     item.price(),
                     item.quantity(),
                     order.getCreatedAt(),

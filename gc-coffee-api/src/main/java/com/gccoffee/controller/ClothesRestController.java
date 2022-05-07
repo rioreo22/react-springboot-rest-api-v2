@@ -87,7 +87,7 @@ public class ClothesRestController {
         Clothes clothes = clothesRequest.toEntity(imagePath);
 
         clothesService.saveClothes(clothes);
-        response.sendRedirect("");
+        response.sendRedirect("/api/v1/clothes");
     }
 
     private String saveImage(MultipartFile uploadImage) {

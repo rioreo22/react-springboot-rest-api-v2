@@ -26,7 +26,7 @@ export function Clothes() {
                 postcode: order.postcode,
                 orderItems:
                     items.map(v => ({
-                        clothesId: v.clothesId,
+                        clothesId: v.id,
                         category: v.category,
                         price: v.price,
                         quantity: v.count
@@ -39,15 +39,15 @@ export function Clothes() {
         console.log(order, items);
     }
 
-    const handleAddClicked = productId => {
-        const product = clothes.find(v => v.id === productId);
-        const found = items.find(v => v.id === productId);
-        const updatedItems = found ? items.map(v => (v.id === productId) ? {
+    const handleAddClicked = clothesId => {
+        const product = clothes.find(v => v.id === clothesId);
+        const found = items.find(v => v.id === clothesId);
+        const updatedItems = found ? items.map(v => (v.id === clothesId) ? {
             ...v,
             count: v.count + 1
         } : v) : [...items, {...product, count: 1}]
         setItems(updatedItems);
-        console.log(clothes.find(v => v.id === productId), "added!");
+        console.log(clothes.find(v => v.id === clothesId), "added!");
     }
 
 

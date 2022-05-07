@@ -5,8 +5,8 @@ import {CategorySelect} from "./CategorySelect";
 export function ClothesForm() {
 
     const [category, setCategory] = useState([]);
-    useEffect(()=>{
-        axios.get('http://localhost:8080/api/v1/clothes/categories').then(v=> setCategory(v.data));
+    useEffect(() => {
+        axios.get('http://localhost:8080/api/v1/clothes/categories').then(v => setCategory(v.data));
     }, []);
 
     const onSubmit = async (e) => {
@@ -33,25 +33,30 @@ export function ClothesForm() {
     }
 
     return (
-        <form onSubmit={(e) => onSubmit(e)}>
-            <div className="mb-3">
-                <label className="form-label">Clothes Image</label>
-                <input className="form-control" type="file" id="formFile" name="clothes_file"/>
+        <div className="row">
+            <div className="col-4"> </div>
+            <div className="col-4">
+            <form onSubmit={(e) => onSubmit(e)}>
+                <div className="mb-3">
+                    <label className="form-label">Clothes Image</label>
+                    <input className="form-control" type="file" id="formFile" name="clothes_file"/>
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Name</label>
+                    <input type="text" className="form-control" id="name" name="name"/>
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Price</label>
+                    <input type="text" className="form-control" id="price" name="price"/>
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Description</label>
+                    <input type="text" className="form-control" id="description" name="description"/>
+                </div>
+                <CategorySelect categories={category}/>
+                <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
             </div>
-            <div className="mb-3">
-                <label className="form-label">Name</label>
-                <input type="text" className="form-control" id="name" name="name"/>
-            </div>
-            <div className="mb-3">
-                <label className="form-label">Price</label>
-                <input type="text" className="form-control" id="price" name="price"/>
-            </div>
-            <div className="mb-3">
-                <label className="form-label">Description</label>
-                <input type="text" className="form-control" id="description" name="description"/>
-            </div>
-            <CategorySelect categories={category}/>
-            <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
+        </div>
     );
 }
