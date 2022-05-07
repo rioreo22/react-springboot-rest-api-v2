@@ -1,0 +1,14 @@
+package com.gccoffee.service;
+
+import com.gccoffee.domain.order.Email;
+import com.gccoffee.domain.order.Order;
+import com.gccoffee.domain.order.OrderItem;
+
+import java.util.List;
+
+public class DefaultOrderService implements OrderService{
+    @Override
+    public Order createOrder(Email email, String address, String postcode, List<OrderItem> orderItems) {
+        return null;
+    }
+}
