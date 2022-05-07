@@ -66,7 +66,6 @@ export function Clothes() {
                 <div className="col-4"><Summary className="col-3" items={items} onOrderSubmit={handleOrderSubmit}/>
                 </div>
             </div>
-
         </div>
     );
 }
