@@ -26,9 +26,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -57,14 +55,9 @@ public class ClothesRestController {
         ResponseEntity result = null;
 
         try {
-            String srcFileName = URLDecoder.decode(imageName, StandardCharsets.UTF_8);
-            log.info("fileName: " + srcFileName);
-
-
             String pathname = uploadPath + File.separator + imageName;
             File file = new File(pathname);
             log.info("file: " + file);
-
 
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Type", Files.probeContentType(file.toPath()));
@@ -77,7 +70,7 @@ public class ClothesRestController {
     }
 
     @PostMapping
-    public void saveClothes(ClothesRequest clothesRequest, HttpServletResponse response) throws IOException {
+    public void saveClothes(ClothesRequest clothesRequest) {
 
         log.info(clothesRequest.toString());
 
@@ -87,7 +80,6 @@ public class ClothesRestController {
         Clothes clothes = clothesRequest.toEntity(imagePath);
 
         clothesService.saveClothes(clothes);
-        response.sendRedirect("/api/v1/clothes");
     }
 
     private String saveImage(MultipartFile uploadImage) {

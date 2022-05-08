@@ -54,7 +54,7 @@ export function ClothesForm() {
                     <input type="text" className="form-control" id="description" name="description"/>
                 </div>
                 <CategorySelect categories={category}/>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary" >Submit</button>
             </form>
             </div>
         </div>
